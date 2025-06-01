@@ -18,11 +18,16 @@ export function PageHead({
   url?: string
 }) {
   const rssFeedUrl = `${config.host}/feed`
+  const brandbounceName = 'Brandbounce'
+  const brandbounceDescription =
+    description ??
+    'Brandbounce: Empowering brands with innovative marketing solutions.'
 
-  title = title ?? site?.name
-  description = description ?? site?.description
+  title = title ?? brandbounceName
+  description = brandbounceDescription
 
-  const socialImageUrl = getSocialImageUrl(pageId) || image
+  const socialImageUrl =
+    getSocialImageUrl(pageId) || image || 'https://brandbounce.app/og-image.jpg'
 
   return (
     <Head>
@@ -35,27 +40,45 @@ export function PageHead({
 
       <meta name='mobile-web-app-capable' content='yes' />
       <meta name='apple-mobile-web-app-status-bar-style' content='black' />
+      <link
+        rel='apple-touch-icon'
+        sizes='180x180'
+        href='/apple-touch-icon.png'
+      />
+      <link rel='icon' type='image/png' href='/favicon.png' />
+      <link rel='manifest' href='/site.webmanifest' />
 
       <meta
         name='theme-color'
         media='(prefers-color-scheme: light)'
-        content='#fefffe'
+        content='#ffffff'
         key='theme-color-light'
       />
       <meta
         name='theme-color'
         media='(prefers-color-scheme: dark)'
-        content='#2d3439'
+        content='#1a2b3c'
         key='theme-color-dark'
       />
 
       <meta name='robots' content='index,follow' />
+      <meta
+        name='keywords'
+        content='Brandbounce, marketing, branding, digital agency, UK'
+      />
+      <meta name='author' content='Brandbounce' />
       <meta property='og:type' content='website' />
+      <meta property='og:locale' content='en_GB' />
+
+      <link rel='preconnect' href='https://www.linkedin.com' />
+      {socialImageUrl && (
+        <link rel='preconnect' href={new URL(socialImageUrl).origin} />
+      )}
 
       {site && (
         <>
-          <meta property='og:site_name' content={site.name} />
-          <meta property='twitter:domain' content={site.domain} />
+          <meta property='og:site_name' content={brandbounceName} />
+          <meta property='twitter:domain' content='brandbounce.app' />
         </>
       )}
 
@@ -76,6 +99,8 @@ export function PageHead({
           <meta name='twitter:card' content='summary_large_image' />
           <meta name='twitter:image' content={socialImageUrl} />
           <meta property='og:image' content={socialImageUrl} />
+          <meta property='og:image:width' content='1200' />
+          <meta property='og:image:height' content='627' />
         </>
       ) : (
         <meta name='twitter:card' content='summary' />
@@ -93,12 +118,30 @@ export function PageHead({
         rel='alternate'
         type='application/rss+xml'
         href={rssFeedUrl}
-        title={site?.name}
+        title={brandbounceName}
       />
 
       <meta property='og:title' content={title} />
       <meta name='twitter:title' content={title} />
       <title>{title}</title>
+
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'Brandbounce',
+            url: 'https://brandbounce.app',
+            contactPoint: {
+              '@type': 'ContactPoint',
+              email: 'info@brandbounce.app',
+              contactType: 'Customer Service'
+            },
+            sameAs: ['https://www.linkedin.com/company/brandbounceuk']
+          })
+        }}
+      />
     </Head>
   )
 }

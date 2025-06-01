@@ -33,7 +33,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -72,11 +71,25 @@
   fill: var(--fg-color);
 }
 
-.facebook .actionBgPane {
-  background: #3b5998;
+.linkedin .actionBgPane {
+  background: #0077b5;
 }
-.facebook:hover {
-  border-color: #3b5998;
+.linkedin:hover {
+  border-color: #0077b5;
+}
+
+.email .actionBgPane {
+  background: #777777;
+}
+.email:hover {
+  border-color: #777777;
+}
+
+.website .actionBgPane {
+  background: #4a90e2; /* Blue color to match a professional website aesthetic */
+}
+.website:hover {
+  border-color: #4a90e2;
 }
 
 .twitter .actionBgPane {
@@ -84,13 +97,6 @@
 }
 .twitter:hover {
   border-color: #2795e9;
-}
-
-.linkedin .actionBgPane {
-  background: #0077b5;
-}
-.linkedin:hover {
-  border-color: #0077b5;
 }
 
 .github .actionBgPane {
@@ -107,25 +113,18 @@
   border-color: #ff0000;
 }
 
-.medium .actionBgPane {
-  background: #00ab6c;
+.mastodon .actionBgPane {
+  background: #6364ff;
 }
-.medium:hover {
-  border-color: #00ab6c;
-}
-
-.newsletter .actionBgPane {
-  background: #777777;
-}
-.newsletter:hover {
-  border-color: #777777;
+.mastodon:hover {
+  border-color: #6364ff;
 }
 
-.email .actionBgPane {
-  background: #777;
+.zhihu .actionBgPane {
+  background: #0066cc;
 }
-.email:hover {
-  border-color: #777;
+.zhihu:hover {
+  border-color: #0066cc;
 }
 
 @media only screen and (max-width: 768px) {
